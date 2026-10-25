@@ -1,19 +1,5 @@
 locals {
   dns_records = {
-    a_wildcard_access = {
-      name    = "*.access.z3cyber.tech"
-      type    = "A"
-      content = "152.70.198.238"
-      ttl     = 1
-      proxied = false
-    }
-    a_access = {
-      name    = "access.z3cyber.tech"
-      type    = "A"
-      content = "152.70.198.238"
-      ttl     = 1
-      proxied = false
-    }
     a_addr = {
       name    = "addr.z3cyber.tech"
       type    = "A"
@@ -75,20 +61,6 @@ locals {
       name    = "chat.z3cyber.tech"
       type    = "CNAME"
       content = "addr.z3cyber.tech"
-      ttl     = 1
-      proxied = true
-    }
-    cname_echoserver = {
-      name    = "echoserver.z3cyber.tech"
-      type    = "CNAME"
-      content = "a2364c18-6dbc-4824-973b-af1e25830511.cfargotunnel.com"
-      ttl     = 1
-      proxied = true
-    }
-    cname_echo = {
-      name    = "echo.z3cyber.tech"
-      type    = "CNAME"
-      content = "a6e7a343-87b1-45e6-b62a-2c70a7a3b7f1.cfargotunnel.com"
       ttl     = 1
       proxied = true
     }
@@ -163,16 +135,9 @@ locals {
       proxied = true
     }
     cname_wg_cloud = {
-      name    = "wg-cloud.z3cyber.tech"
-      type    = "CNAME"
-      content = "a2364c18-6dbc-4824-973b-af1e25830511.cfargotunnel.com"
-      ttl     = 1
-      proxied = true
-    }
-    cname_wg = {
       name    = "wg.z3cyber.tech"
       type    = "CNAME"
-      content = "homebaymeadows.z3cyber.tech"
+      content = "a2364c18-6dbc-4824-973b-af1e25830511.cfargotunnel.com"
       ttl     = 1
       proxied = true
     }

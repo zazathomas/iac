@@ -1,0 +1,48 @@
+---
+- name: Configure static network route with Netplan
+  hosts: all
+  become: true
+
+  vars:
+    netplan_interface: eth0
+    destination_network: 10.0.0.0/24
+    route_gateway: 192.168.0.93
+    netplan_config_file: /etc/netplan/60-static-routes.yaml
+
+  tasks:
+    - name: Ensure Netplan is installed
+      ansible.builtin.package:
+        name: netplan.io
+        state: present
+
+    - name: Check that the network interface exists
+      ansible.builtin.command:
+        cmd: "ip link show {{ netplan_interface }}"
+      changed_when: false
+
+    - name: Deploy Netplan static route configuration
+      ansible.builtin.copy:
+        dest: "{{ netplan_config_file }}"
+        owner: root
+        group: root
+        mode: "0600"
+        content: |
+          network:
+            version: 2
+            ethernets:
+              {{ netplan_interface }}:
+                dhcp4: true
+                routes:
+                  - to: {{ destination_network }}
+                    via: {{ route_gateway }}
+      notify: Apply Netplan configuration
+
+    - name: Validate Netplan configuration
+      ansible.builtin.command:
+        cmd: netplan generate
+      changed_when: false
+
+  handlers:
+    - name: Apply Netplan configuration
+      ansible.builtin.command:
+        cmd: netplan apply
