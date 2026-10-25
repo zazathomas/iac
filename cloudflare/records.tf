@@ -156,6 +156,14 @@ locals {
       proxied = true
     }
 
+    test_record = {
+      name    = "test-rec.z3cyber.tech"
+      type    = "A"
+      content = "192.168.0.1"
+      ttl     = 1
+      proxied = true
+    }
+
     mx_primary = {
       name     = "z3cyber.tech"
       type     = "MX"
