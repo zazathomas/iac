@@ -134,6 +134,13 @@ locals {
       ttl     = 1
       proxied = true
     }
+    cname_terrapod_webhook = {
+      name    = "webhooks.terrapod.z3cyber.tech"
+      type    = "CNAME"
+      content = "a2364c18-6dbc-4824-973b-af1e25830511.cfargotunnel.com"
+      ttl     = 1
+      proxied = true
+    }
     cname_wg_cloud = {
       name    = "wg.z3cyber.tech"
       type    = "CNAME"
