@@ -161,7 +161,7 @@ locals {
       type    = "A"
       content = "192.168.0.1"
       ttl     = 1
-      proxied = true
+      proxied = false
     }
 
     mx_primary = {
