@@ -150,7 +150,7 @@ locals {
     }
 
     test_record = {
-      name    = "test-record.z3cyber.tech"
+      name    = "test-rec.z3cyber.tech"
       type    = "A"
       content = "192.168.0.1"
       ttl     = 1
