@@ -1,0 +1,27 @@
+# Terraform working directory and state
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
+
+# Plans and crash logs
+*.tfplan
+*.plan
+crash.log
+crash.*.log
+
+# Local variables and credentials
+*.tfvars
+*.tfvars.json
+.env
+.env.*
+!.env.example
+
+# Adoption output is environment-specific and may contain sensitive metadata.
+/migrations/adoption/generated/
+/migrations/adoption/rendered/
+
+# Local tooling
+.pytest_cache/
+__pycache__/
+*.py[cod]
