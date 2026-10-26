@@ -1,0 +1,41 @@
+name: Validate Terraform
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory:
+          - keycloak
+          - cloudflare
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Format check
+        working-directory: ${{ matrix.directory }}
+        run: terraform fmt -check -recursive
+
+      - name: Terraform validation
+        working-directory: ${{ matrix.directory }}
+        run: terraform init -backend=false -input=false && terraform validate
+
+      - name: Unit tests
+        if: matrix.directory == 'keycloak'
+        working-directory: ${{ matrix.directory }}
+        run: python3 -m unittest discover -s tests/unit -p 'test_*.py'

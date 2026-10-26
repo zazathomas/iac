@@ -1,0 +1,19 @@
+{
+  "resource_changes": [
+    {
+      "address": "keycloak_openid_client.example",
+      "type": "keycloak_openid_client",
+      "change": {
+        "after": {
+          "client_id": "example",
+          "access_type": "PUBLIC",
+          "full_scope_allowed": false,
+          "valid_redirect_uris": ["https://example.test/callback"],
+          "web_origins": ["https://example.test"],
+          "direct_access_grants_enabled": false,
+          "pkce_code_challenge_method": "S256"
+        }
+      }
+    }
+  ]
+}

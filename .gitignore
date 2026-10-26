@@ -16,6 +16,11 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Local environment files may contain provider credentials.
+.env
+.env.*
+!.env.example
+
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
 override.tf
